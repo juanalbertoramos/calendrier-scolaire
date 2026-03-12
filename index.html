@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cal Scolaire">
+<meta name="theme-color" content="#0f4c75">
+<title>Calendrier Scolaire 2025–2026</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMGY0Yzc1Ii8+PHRleHQgeD0iOTAiIHk9IjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjM2IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXdlaWdodD0iNzAwIj4yMDI1PC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0ic2VyaWYiPjIwMjY8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjE0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iI2Y1OWUwYiI+8J+ThTwvdGV4dD48L3N2Zz4=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f4c75;
+  --navy-dark: #1e3a5f;
+  --navy-light: #1b6ca8;
+  --gold: #f59e0b;
+  --green: #16a34a;
+  --green-bg: #dcfce7;
+  --blue: #2563eb;
+  --blue-bg: #dbeafe;
+  --purple: #7c3aed;
+  --orange: #ea580c;
+  --teal: #0d9488;
+  --red: #dc2626;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-800: #1e293b;
+  --radius: 12px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { 
+  font-family: 'DM Sans', -apple-system, sans-serif; 
+  background: linear-gradient(145deg, #f0f4f8, #e2e8f0, #f0f4f8); 
+  color: var(--gray-800); 
+  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+button { font-family: inherit; cursor: pointer; }
+input { font-family: inherit; }
+
+/* ── HEADER ── */
+.hdr {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 40%, var(--navy-light) 100%);
+  padding: calc(var(--safe-top) + 14px) 16px 14px;
+  color: white;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 4px 24px rgba(15,76,117,0.35);
+}
+.ttl { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+.sub { font-size: 10px; opacity: 0.6; letter-spacing: 0.04em; margin-top: 1px; }
+.hdr-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+/* Quick month pills */
+.sms { display: flex; gap: 3px; overflow-x: auto; padding: 8px 0 2px; scrollbar-width: none; }
+.sms::-webkit-scrollbar { display: none; }
+.sp { flex-shrink: 0; padding: 3px 8px; border-radius: 12px; font-size: 10px; font-weight: 500; border: none; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); transition: all 0.2s; }
+.sp:hover { background: rgba(255,255,255,0.2); color: white; }
+.sp.a { background: rgba(255,255,255,0.92); color: var(--navy); font-weight: 600; }
+
+/* Month nav */
+.mnav { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.mname { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; }
+.nb { background: rgba(255,255,255,0.15); border: none; color: white; width: 34px; height: 34px; border-radius: 10px; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.nb:hover { background: rgba(255,255,255,0.25); }
+.nb:active { transform: scale(0.93); }
+.today-btn { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 10px; margin-top: 1px; }
+
+/* View tabs */
+.vt { display: flex; margin-top: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 3px; }
+.vb { flex: 1; padding: 6px; border: none; background: transparent; color: rgba(255,255,255,0.6); font-size: 10.5px; font-weight: 500; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
+.vb.a { background: rgba(255,255,255,0.9); color: var(--navy); font-weight: 600; }
+
+/* Reset / utility */
+.ub { background: none; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.6); padding: 3px 7px; border-radius: 6px; font-size: 9px; }
+.ub:hover { background: rgba(255,255,255,0.1); color: white; }
+
+/* ── EXPORT BAR ── */
+.xbar { display: flex; gap: 5px; padding: 6px 8px; }
+.xb { flex: 1; padding: 8px; border: 1.5px solid var(--gray-200); border-radius: 10px; background: white; font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 5px; color: var(--gray-500); transition: all 0.15s; }
+.xb:hover { border-color: var(--navy); color: var(--navy); background: #eff6ff; }
+
+/* ── LEGEND ── */
+.lg { display: flex; gap: 8px; padding: 5px 8px; flex-wrap: wrap; justify-content: center; }
+.lgi { display: flex; align-items: center; gap: 3px; font-size: 9px; color: var(--gray-500); }
+.lgd { width: 8px; height: 8px; border-radius: 2px; }
+
+/* ── CALENDAR GRID ── */
+.cg { padding: 6px 6px 2px; }
+.dh { display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 2px; }
+.dhc { text-align: center; font-size: 9px; font-weight: 600; color: var(--gray-500); padding: 4px 0; text-transform: uppercase; letter-spacing: 0.05em; }
+.dg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.dc {
+  aspect-ratio: 1; border-radius: 9px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; position: relative; transition: all 0.15s; border: 2px solid transparent; min-height: 40px; background: white;
+  font-size: 13px; font-weight: 600;
+}
+.dc:active { transform: scale(0.93); }
+.dc.em { background: transparent; cursor: default; }
+.dc.we { background: var(--gray-50); opacity: 0.4; }
+.dc.ho { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-color: #4ade80; }
+.dc.pd { background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-color: #60a5fa; }
+.dc.td { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(245,158,11,0.3); }
+.dc.sl { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15,76,117,0.2); }
+.dc.he::after { content: ''; position: absolute; bottom: 3px; width: 5px; height: 5px; border-radius: 50%; background: var(--purple); }
+.dc.hm::after { content: ''; position: absolute; bottom: 3px; width: 13px; height: 4px; border-radius: 3px; background: linear-gradient(90deg, var(--orange), var(--purple)); }
+.cb { font-size: 7px; font-weight: 700; color: var(--gray-400); position: absolute; top: 2px; right: 4px; }
+.pb { font-size: 7px; font-weight: 700; color: var(--blue); position: absolute; top: 2px; left: 4px; }
+.hbb { font-size: 7px; font-weight: 700; color: var(--green); position: absolute; top: 2px; left: 4px; }
+
+/* ── DETAIL PANEL ── */
+.dp { background: white; border-radius: 14px; margin: 0 6px 6px; padding: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.dd { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.dm { font-size: 11px; color: var(--gray-500); margin-bottom: 8px; }
+.et { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 8px; font-size: 12.5px; font-weight: 500; margin-bottom: 4px; }
+.ea { display: flex; gap: 3px; margin-left: auto; flex-shrink: 0; }
+.eab { background: rgba(0,0,0,0.05); border: none; width: 26px; height: 26px; border-radius: 6px; font-size: 11px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.eab:active { transform: scale(0.9); }
+.dsb { background: none; border: 1px solid #fca5a5; color: var(--red); padding: 3px 9px; border-radius: 6px; font-size: 9px; margin-bottom: 5px; margin-left: 4px; }
+
+/* ── ADD FORM ── */
+.ab { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; border: none; width: 100%; padding: 9px; border-radius: 10px; font-size: 12px; font-weight: 600; margin-top: 4px; transition: all 0.2s; }
+.ab:active { transform: scale(0.98); }
+.af { margin-top: 8px; padding: 12px; background: var(--gray-50); border-radius: 12px; }
+.fl { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-500); margin-bottom: 3px; }
+.fi { width: 100%; padding: 8px 10px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-size: 13px; outline: none; background: white; transition: border-color 0.2s; }
+.fi:focus { border-color: var(--navy); }
+.fg { margin-bottom: 8px; }
+.cs { display: flex; gap: 4px; flex-wrap: wrap; }
+.cc { padding: 4px 9px; border-radius: 18px; font-size: 10px; font-weight: 500; border: 2px solid transparent; background: var(--gray-100); display: inline-flex; align-items: center; gap: 3px; transition: all 0.15s; }
+.cc.a { border-color: currentColor; background: white; }
+.rc { padding: 4px 8px; border-radius: 16px; font-size: 10px; font-weight: 500; border: 1.5px solid var(--gray-200); background: white; transition: all 0.15s; }
+.rc.a { border-color: var(--navy); background: #eff6ff; color: var(--navy); }
+.fa { display: flex; gap: 8px; margin-top: 10px; }
+.bs { flex: 1; padding: 9px; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: white; }
+.bc { padding: 9px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-size: 12px; font-weight: 500; background: white; color: var(--gray-500); }
+
+/* ── WEEK VIEW ── */
+.wc { background: white; border-radius: 14px; margin: 0 6px 6px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.wr { display: flex; align-items: stretch; padding: 10px 12px; gap: 10px; border-bottom: 1px solid var(--gray-100); min-height: 52px; transition: background 0.15s; cursor: pointer; }
+.wr:last-child { border-bottom: none; }
+.wr:active { background: var(--gray-50); }
+.wr.tr { background: #fffbeb; border-left: 3px solid var(--gold); }
+.wr.hr { background: #f0fdf4; }
+.wr.pr { background: #eff6ff; }
+.wl { width: 48px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+.wn { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--gray-400); }
+.wdd { font-size: 18px; font-weight: 700; line-height: 1.1; }
+.wev { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.wp { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; }
+.wcyc { font-size: 10px; color: var(--gray-400); font-weight: 600; flex-shrink: 0; align-self: center; }
+.ws { text-align: center; padding: 4px 8px 8px; font-size: 10px; color: var(--gray-400); }
+
+/* ── SEARCH ── */
+.si { width: 100%; padding: 11px 14px 11px 36px; border: 2px solid var(--gray-200); border-radius: 12px; font-size: 13px; outline: none; background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 12px center no-repeat; transition: border-color 0.2s; }
+.si:focus { border-color: var(--navy); }
+.sr { background: white; border-radius: 10px; padding: 10px 14px; margin: 0 6px 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); cursor: pointer; transition: all 0.15s; }
+.sr:active { background: var(--gray-50); }
+.stag { display: inline-block; margin: 0 4px 4px 0; padding: 4px 10px; background: white; border: 1.5px solid var(--gray-200); border-radius: 18px; font-size: 10px; }
+.stag:active { background: var(--gray-100); }
+
+/* ── LIST ── */
+.li { background: white; border-radius: 10px; padding: 9px 12px; margin: 0 6px 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 10px; cursor: pointer; transition: all 0.15s; }
+.li:active { background: var(--gray-50); }
+.lbb { width: 38px; height: 38px; border-radius: 9px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 700; }
+
+.ftr { text-align: center; padding: 14px 8px calc(var(--safe-bottom) + 16px); font-size: 9px; color: #b0b8c4; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.dp, .wc, .af { animation: fadeIn 0.25s ease-out; }
+
+/* Share banner */
+.share-banner {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1.5px solid #fbbf24;
+  border-radius: 10px;
+  margin: 0 6px 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.share-banner button {
+  margin-left: auto;
+  background: #f59e0b;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ─── SCHOOL CALENDAR DATA ────────────────────────────────────────────────────
+
+const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const DAYS_FULL = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const DAYS_SHORT = ["Dim","Lun","Mar","Mer","Jeu","Ven","Sam"];
+const DAYS_HDR = ["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
+
+const HOLIDAYS_RAW = [
+  ["2025-09-01","Fête du Travail"],["2025-10-13","Action de grâce"],
+  ["2025-12-22","Congé de Noël"],["2025-12-23","Congé de Noël"],["2025-12-24","Congé de Noël"],["2025-12-25","Congé de Noël"],["2025-12-26","Congé de Noël"],
+  ["2025-12-29","Congé de Noël"],["2025-12-30","Congé de Noël"],["2025-12-31","Congé de Noël"],
+  ["2026-01-01","Jour de l'An"],["2026-01-02","Congé de Noël"],
+  ["2026-02-16","Jour de la famille"],
+  ["2026-03-16","Congé de mars"],["2026-03-17","Congé de mars"],["2026-03-18","Congé de mars"],["2026-03-19","Congé de mars"],["2026-03-20","Congé de mars"],
+  ["2026-04-03","Vendredi saint"],["2026-04-06","Lundi de Pâques"],
+  ["2026-05-18","Fête de la Reine"]
+];
+const PD_RAW = [
+  ["2025-08-25","Journée pédagogique"],["2025-08-26","Journée pédagogique"],
+  ["2025-11-24","Journée pédagogique"],["2026-01-23","Journée pédagogique"],
+  ["2026-02-16","Journée pédagogique"],["2026-04-24","Journée pédagogique"],
+  ["2026-06-05","Journée pédagogique"],["2026-06-19","Journée pédagogique"]
+];
+
+const holidayMap = {}; HOLIDAYS_RAW.forEach(([d,l]) => holidayMap[d] = l);
+const pdMap = {}; PD_RAW.forEach(([d,l]) => pdMap[d] = l);
+const holidaySet = new Set(Object.keys(holidayMap));
+const pdSet = new Set(Object.keys(pdMap));
+
+// Compute cycle days
+const CYCLE_DAYS = {};
+(function() {
+  let cd = 1;
+  for (let d = new Date(2025,7,27); d <= new Date(2026,5,18); d.setDate(d.getDate()+1)) {
+    if (d.getDay()===0||d.getDay()===6) continue;
+    const s = iso(d);
+    if (holidaySet.has(s)||pdSet.has(s)) continue;
+    CYCLE_DAYS[s] = cd;
+    cd = cd===10 ? 1 : cd+1;
+  }
+})();
+
+const CATEGORIES = {
+  school:   {label:"École",    color:"#2563eb",icon:"📚"},
+  activity: {label:"Activité", color:"#7c3aed",icon:"⭐"},
+  food:     {label:"Repas",    color:"#ea580c",icon:"🍕"},
+  personal: {label:"Personnel",color:"#0d9488",icon:"👤"},
+  reminder: {label:"Rappel",   color:"#dc2626",icon:"🔔"},
+};
+
+const SCHOOL_MONTHS = [[2025,7],[2025,8],[2025,9],[2025,10],[2025,11],[2026,0],[2026,1],[2026,2],[2026,3],[2026,4],[2026,5]];
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+
+function iso(d) { return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function pd(s) { const p=s.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]); }
+function ds(y,m,d) { return y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'); }
+function fmtFr(s) { const d=pd(s); return DAYS_FULL[d.getDay()]+' '+d.getDate()+' '+MONTHS_FR[d.getMonth()]+' '+d.getFullYear(); }
+
+function getMonthData(y,m) {
+  const dim = new Date(y,m+1,0).getDate();
+  let sd = new Date(y,m,1).getDay(); sd = sd===0?6:sd-1;
+  return {dim,sd};
+}
+
+function getWeekDates(ref) {
+  const d=new Date(ref); const dow=d.getDay();
+  const mon=new Date(d); mon.setDate(d.getDate()-(dow===0?6:dow-1));
+  const r=[];
+  for(let i=0;i<5;i++){const x=new Date(mon);x.setDate(mon.getDate()+i);r.push(iso(x));}
+  return r;
+}
+
+function generateDefaults() {
+  const evts = {};
+  const addW = (start, dow, title, cat) => {
+    for(let d=new Date(start);d<=new Date(2026,5,18);d.setDate(d.getDate()+1)){
+      if(d.getDay()!==dow)continue;
+      const s=iso(d);
+      if(holidaySet.has(s)||pdSet.has(s)){continue;}
+      if(!evts[s])evts[s]=[];
+      evts[s].push({title,category:cat,notes:"",recurring:"weekly"});
+      d.setDate(d.getDate()+6);
+    }
+  };
+  addW(new Date(2025,8,4), 4, "Yoga", "activity");
+  addW(new Date(2025,8,5), 5, "Pizza vendredi", "food");
+  return evts;
+}
+
+function getDayInfo(dateStr, events) {
+  const d=pd(dateStr); const dow=d.getDay();
+  return {
+    isWeekend: dow===0||dow===6,
+    isHoliday: !!holidayMap[dateStr],
+    isPD: !!pdMap[dateStr],
+    cycleDay: CYCLE_DAYS[dateStr],
+    customEvents: events[dateStr]||[],
+    isToday: dateStr===iso(new Date()),
+    holidayLabel: holidayMap[dateStr],
+    pdLabel: pdMap[dateStr],
+  };
+}
+
+// iCal export
+function downloadICS(events) {
+  const esc=s=>(s||"").replace(/[\\;,]/g,c=>'\\'+c).replace(/\n/g,'\\n');
+  let c="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CalScolaire//FR\r\nCALSCALE:GREGORIAN\r\nX-WR-CALNAME:Calendrier scolaire 2025-2026\r\n";
+  HOLIDAYS_RAW.forEach(([dt,l])=>{const d=dt.replace(/-/g,"");c+=`BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${d}\r\nSUMMARY:🏖️ ${esc(l)}\r\nUID:h-${d}@cs\r\nEND:VEVENT\r\n`;});
+  PD_RAW.forEach(([dt,l])=>{const d=dt.replace(/-/g,"");c+=`BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${d}\r\nSUMMARY:📘 ${esc(l)}\r\nUID:p-${d}@cs\r\nEND:VEVENT\r\n`;});
+  Object.entries(events).forEach(([date,evts])=>{evts.forEach((evt,i)=>{
+    const d=date.replace(/-/g,"");const cat=CATEGORIES[evt.category]||CATEGORIES.school;
+    c+=`BEGIN:VEVENT\r\nDTSTART;VALUE=DATE:${d}\r\nSUMMARY:${cat.icon} ${esc(evt.title)}\r\n`;
+    if(evt.notes)c+=`DESCRIPTION:${esc(evt.notes)}\r\n`;
+    c+=`UID:e-${d}-${i}@cs\r\nEND:VEVENT\r\n`;
+  });});
+  c+="END:VCALENDAR\r\n";
+  const blob=new Blob([c],{type:"text/calendar;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download="calendrier-scolaire-2025-2026.ics";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+// Share via Web Share API
+function shareApp() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Calendrier scolaire 2025-2026',
+      text: 'Notre calendrier scolaire interactif — Écoles catholiques Centre-Est',
+      url: window.location.href,
+    }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>alert('Lien copié!')).catch(()=>{});
+  }
+}
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+const today = new Date();
+const todayStr = iso(today);
+let state = {
+  month: today.getMonth(),
+  year: today.getFullYear(),
+  selected: null,
+  events: {},
+  view: 'week',
+  weekOffset: 0,
+  showForm: false,
+  editIdx: null,
+  formData: {title:'',category:'school',notes:'',recurring:'none'},
+  search: '',
+  searchResults: null,
+  loaded: false,
+};
+
+// Load from localStorage
+try {
+  const saved = localStorage.getItem('school-cal-v4');
+  if (saved) state.events = JSON.parse(saved);
+  else state.events = generateDefaults();
+} catch(e) { state.events = generateDefaults(); }
+state.loaded = true;
+
+function saveEvents() {
+  try { localStorage.setItem('school-cal-v4', JSON.stringify(state.events)); } catch(e) {}
+}
+
+function setState(patch) {
+  Object.assign(state, patch);
+  render();
+}
+
+// ─── EVENT OPERATIONS ────────────────────────────────────────────────────────
+
+function addEvent() {
+  const f=state.formData; const d=state.selected;
+  if(!f.title.trim()||!d)return;
+  const evts={...state.events};
+
+  if(f.recurring==='none'){
+    if(!evts[d])evts[d]=[];
+    if(state.editIdx!==null){evts[d][state.editIdx]={title:f.title,category:f.category,notes:f.notes};}
+    else{evts[d].push({title:f.title,category:f.category,notes:f.notes});}
+  } else {
+    const start=pd(d);const end=new Date(2026,5,30);
+    const step=f.recurring==='weekly'?7:f.recurring==='biweekly'?14:0;
+    const dates=[];
+    if(step){for(let x=new Date(start);x<=end;x.setDate(x.getDate()+step)){const s=iso(x);if(!holidaySet.has(s)&&!pdSet.has(s))dates.push(s);}}
+    else{for(let x=new Date(start);x<=end;x.setMonth(x.getMonth()+1))dates.push(iso(x));}
+    dates.forEach(dt=>{if(!evts[dt])evts[dt]=[];evts[dt].push({title:f.title,category:f.category,notes:f.notes,recurring:f.recurring});});
+  }
+  state.events=evts; saveEvents();
+  setState({showForm:false,editIdx:null,formData:{title:'',category:'school',notes:'',recurring:'none'}});
+}
+
+function deleteEvent(date,idx) {
+  const evts={...state.events};
+  if(evts[date]){evts[date].splice(idx,1);if(!evts[date].length)delete evts[date];}
+  state.events=evts; saveEvents(); render();
+}
+
+function deleteSeries(date,idx) {
+  const evt=state.events[date]?.[idx]; if(!evt)return;
+  const evts={...state.events};
+  Object.keys(evts).forEach(d=>{evts[d]=evts[d].filter(e=>!(e.title===evt.title&&e.category===evt.category));if(!evts[d].length)delete evts[d];});
+  state.events=evts; saveEvents(); setState({editIdx:null});
+}
+
+function resetAll() {
+  if(confirm('Effacer toutes les données et revenir aux défauts?')){
+    state.events=generateDefaults(); saveEvents(); setState({selected:null,showForm:false});
+  }
+}
+
+function doSearch(q) {
+  if(!q.trim()){setState({searchResults:null});return;}
+  const ql=q.toLowerCase(); const r=[];
+  Object.entries(state.events).forEach(([date,evts])=>{evts.forEach((e,i)=>{
+    if(e.title.toLowerCase().includes(ql)||(e.notes||'').toLowerCase().includes(ql))r.push({date,...e,idx:i,src:'custom'});
+  });});
+  HOLIDAYS_RAW.forEach(([d,l])=>{if(l.toLowerCase().includes(ql))r.push({date:d,title:l,src:'holiday'});});
+  PD_RAW.forEach(([d,l])=>{if(l.toLowerCase().includes(ql)||'pédagogique'.includes(ql))r.push({date:d,title:l,src:'pd'});});
+  if(ql.match(/^j(our)?\s*\d+$/)){const n=parseInt(ql.replace(/\D/g,''));if(n>=1&&n<=10)Object.entries(CYCLE_DAYS).forEach(([d,c])=>{if(c===n)r.push({date:d,title:`Jour ${c} du cycle`,src:'cycle'});});}
+  r.sort((a,b)=>a.date.localeCompare(b.date));
+  setState({searchResults:r});
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+
+function h(tag, attrs, ...children) {
+  const el = document.createElement(tag);
+  if (attrs) Object.entries(attrs).forEach(([k,v]) => {
+    if (k==='className') el.className=v;
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2).toLowerCase(), v);
+    else if (k==='style'&&typeof v==='object') Object.assign(el.style, v);
+    else el.setAttribute(k, v);
+  });
+  children.flat(Infinity).forEach(c => {
+    if (c==null||c===false) return;
+    el.appendChild(typeof c==='string'||typeof c==='number' ? document.createTextNode(String(c)) : c);
+  });
+  return el;
+}
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = '';
+
+  const s = state;
+  const {dim, sd} = getMonthData(s.year, s.month);
+
+  // ── HEADER
+  const header = h('div',{className:'hdr'},
+    h('div',{className:'hdr-top'},
+      h('div',null,
+        h('div',{className:'ttl'},'Calendrier scolaire 2025–2026'),
+        h('div',{className:'sub'},'Écoles élémentaires catholiques Centre-Est'),
+      ),
+      h('button',{className:'ub',onClick:resetAll},'Réinitialiser'),
+    ),
+    // Month pills
+    h('div',{className:'sms'},
+      ...SCHOOL_MONTHS.map(([y,m])=>
+        h('button',{className:'sp'+(s.year===y&&s.month===m?' a':''),onClick:()=>setState({year:y,month:m,view:s.view==='search'?'search':'calendar'})},MONTHS_FR[m].slice(0,3))
+      )
+    ),
+    // Nav
+    s.view==='week' ?
+      h('div',{className:'mnav'},
+        h('button',{className:'nb',onClick:()=>setState({weekOffset:s.weekOffset-1})},'‹'),
+        h('div',{style:{textAlign:'center'}},
+          h('div',{className:'mname',style:{fontSize:'15px'}},
+            s.weekOffset===0?'Cette semaine':s.weekOffset===1?'Semaine prochaine':s.weekOffset===-1?'Semaine dernière':'Semaine du '+pd(getWeekDates(new Date(new Date().setDate(today.getDate()+s.weekOffset*7)))[0]).getDate()+' '+MONTHS_FR[pd(getWeekDates(new Date(new Date().setDate(today.getDate()+s.weekOffset*7)))[0]).getMonth()].slice(0,3)
+          ),
+          h('button',{className:'today-btn',onClick:()=>setState({weekOffset:0})},'Cette semaine'),
+        ),
+        h('button',{className:'nb',onClick:()=>setState({weekOffset:s.weekOffset+1})},'›'),
+      ) :
+    (s.view==='calendar'||s.view==='list') ?
+      h('div',{className:'mnav'},
+        h('button',{className:'nb',onClick:()=>{if(s.month===0)setState({month:11,year:s.year-1});else setState({month:s.month-1});}},'‹'),
+        h('div',{style:{textAlign:'center'}},
+          h('div',{className:'mname'},MONTHS_FR[s.month]+' '+s.year),
+          h('button',{className:'today-btn',onClick:()=>setState({month:today.getMonth(),year:today.getFullYear()})},"Aujourd'hui"),
+        ),
+        h('button',{className:'nb',onClick:()=>{if(s.month===11)setState({month:0,year:s.year+1});else setState({month:s.month+1});}},'›'),
+      ) : h('div'),
+    // View tabs
+    h('div',{className:'vt'},
+      ...['week','calendar','list','search'].map(v=>
+        h('button',{className:'vb'+(s.view===v?' a':''),onClick:()=>setState({view:v})},
+          v==='week'?'🗓 Semaine':v==='calendar'?'📅 Mois':v==='list'?'📋 Liste':'🔍'
+        )
+      )
+    ),
+  );
+  app.appendChild(header);
+
+  // ── EXPORT + SHARE BAR
+  app.appendChild(h('div',{className:'xbar'},
+    h('button',{className:'xb',onClick:()=>downloadICS(s.events)},'📤 Exporter .ics'),
+    h('button',{className:'xb',onClick:shareApp},'🔗 Partager'),
+  ));
+
+  // ── WEEK VIEW
+  if (s.view==='week') {
+    const ref=new Date(today); ref.setDate(ref.getDate()+s.weekOffset*7);
+    const wd=getWeekDates(ref);
+    const card=h('div',{className:'wc'});
+    wd.forEach(dateStr=>{
+      const info=getDayInfo(dateStr,s.events); const d=pd(dateStr); const dow=d.getDay();
+      let rc='wr'; if(info.isToday)rc+=' tr'; else if(info.isHoliday)rc+=' hr'; else if(info.isPD)rc+=' pr';
+      const row=h('div',{className:rc,onClick:()=>{const dd=pd(dateStr);setState({selected:dateStr,view:'calendar',month:dd.getMonth(),year:dd.getFullYear(),showForm:false,editIdx:null});}},
+        h('div',{className:'wl'},
+          h('div',{className:'wn'},DAYS_SHORT[dow].slice(0,3)),
+          h('div',{className:'wdd',style:{color:info.isHoliday?'var(--green)':info.isPD?'var(--blue)':'var(--gray-800)'}},String(d.getDate())),
+        ),
+        h('div',{className:'wev'},
+          info.isHoliday ? h('span',{className:'wp',style:{background:'var(--green-bg)',color:'#166534'}},'🏖️ '+info.holidayLabel) : null,
+          info.isPD ? h('span',{className:'wp',style:{background:'var(--blue-bg)',color:'#1e40af'}},'📘 Journée péd.') : null,
+          ...info.customEvents.map((evt,i)=>{
+            const cat=CATEGORIES[evt.category]||CATEGORIES.school;
+            return h('span',{className:'wp',style:{background:cat.color+'10',color:cat.color}},cat.icon+' '+evt.title+(evt.notes?' — '+evt.notes:''));
+          }),
+          (!info.isHoliday&&!info.isPD&&!info.customEvents.length) ? h('span',{style:{fontSize:'11px',color:'#d1d5db'}},'—') : null,
+        ),
+        info.cycleDay ? h('span',{className:'wcyc'},'J'+info.cycleDay) : null,
+      );
+      card.appendChild(row);
+    });
+    app.appendChild(card);
+    // Summary
+    const noSchool=wd.filter(d=>{const i=getDayInfo(d,s.events);return i.isHoliday||i.isPD;}).length;
+    const acts=wd.reduce((n,d)=>(n+(s.events[d]?.length||0)),0);
+    app.appendChild(h('div',{className:'ws'},(noSchool?noSchool+' jour(s) sans école':'Semaine complète')+(acts?' · '+acts+' activité(s)':'')));
+  }
+
+  // ── CALENDAR VIEW
+  if (s.view==='calendar') {
+    // Legend
+    app.appendChild(h('div',{className:'lg'},
+      h('div',{className:'lgi'},h('div',{className:'lgd',style:{background:'linear-gradient(135deg,#dcfce7,#bbf7d0)',border:'1px solid #4ade80'}}),' Congé'),
+      h('div',{className:'lgi'},h('div',{className:'lgd',style:{background:'linear-gradient(135deg,#dbeafe,#bfdbfe)',border:'1px solid #60a5fa'}}),' Péd.'),
+      h('div',{className:'lgi'},h('div',{className:'lgd',style:{background:'white',border:'2px solid var(--gold)'}})," Auj."),
+      h('div',{className:'lgi'},h('div',{className:'lgd',style:{background:'var(--purple)',borderRadius:'50%'}}),' Évén.'),
+    ));
+    // Grid
+    const grid=h('div',{className:'cg'},
+      h('div',{className:'dh'},...DAYS_HDR.map(d=>h('div',{className:'dhc'},d))),
+      h('div',{className:'dg'},
+        ...Array.from({length:sd},(_,i)=>h('div',{className:'dc em'})),
+        ...Array.from({length:dim},(_,i)=>{
+          const day=i+1; const dateStr=ds(s.year,s.month,day); const info=getDayInfo(dateStr,s.events);
+          const d=new Date(s.year,s.month,day); const dow=d.getDay();
+          let c='dc';
+          if(dow===0||dow===6)c+=' we'; else if(info.isHoliday)c+=' ho'; else if(info.isPD)c+=' pd';
+          if(info.isToday)c+=' td'; if(s.selected===dateStr)c+=' sl';
+          if(info.customEvents.length===1)c+=' he'; if(info.customEvents.length>1)c+=' hm';
+          const cell=h('div',{className:c,onClick:()=>setState({selected:dateStr,showForm:false,editIdx:null})},
+            info.cycleDay?h('span',{className:'cb'},String(info.cycleDay)):null,
+            info.isPD?h('span',{className:'pb'},'P'):null,
+            info.isHoliday?h('span',{className:'hbb'},'C'):null,
+            h('span',{style:{color:info.isHoliday?'var(--green)':info.isPD?'var(--blue)':(dow===0||dow===6)?'#cbd5e1':'var(--gray-800)'}},String(day)),
+          );
+          return cell;
+        }),
+      ),
+    );
+    app.appendChild(grid);
+
+    // Detail panel
+    if (s.selected) {
+      const info=getDayInfo(s.selected,s.events);
+      const panel=h('div',{className:'dp'},
+        h('div',{className:'dd'},fmtFr(s.selected)),
+        h('div',{className:'dm'},
+          (info.cycleDay?'Jour '+info.cycleDay+' du cycle':'')
+          +(info.isHoliday?' · Congé scolaire':'')
+          +(info.isPD?' · Journée pédagogique':'')
+          +(!info.cycleDay&&!info.isHoliday&&!info.isPD&&info.isWeekend?'Fin de semaine':'')
+        ),
+        info.isHoliday?h('div',{className:'et',style:{background:'var(--green-bg)',color:'#166534'}},'🏖️ '+info.holidayLabel):null,
+        info.isPD?h('div',{className:'et',style:{background:'var(--blue-bg)',color:'#1e40af'}},'📘 '+info.pdLabel):null,
+      );
+
+      // Custom events
+      info.customEvents.forEach((evt,idx)=>{
+        const cat=CATEGORIES[evt.category]||CATEGORIES.school;
+        const tag=h('div',{className:'et',style:{background:cat.color+'10',color:cat.color}},
+          h('span',null,cat.icon+' '),
+          h('span',{style:{flex:'1'}},evt.title),
+          evt.notes?h('span',{style:{fontSize:'11px',opacity:'0.6'}},'— '+evt.notes):null,
+          evt.recurring?h('span',{style:{fontSize:'9px',opacity:'0.4',marginLeft:'2px'}},'🔄'):null,
+          h('div',{className:'ea'},
+            h('button',{className:'eab',onClick:e=>{e.stopPropagation();setState({formData:{title:evt.title,category:evt.category,notes:evt.notes||'',recurring:'none'},editIdx:idx,showForm:true})}},'✏️'),
+            h('button',{className:'eab',onClick:e=>{e.stopPropagation();deleteEvent(s.selected,idx);}},'🗑'),
+          ),
+        );
+        panel.appendChild(tag);
+        if(evt.recurring){
+          panel.appendChild(h('button',{className:'dsb',onClick:()=>deleteSeries(s.selected,idx)},'Supprimer toute la série'));
+        }
+      });
+
+      // Add form or button
+      if(!s.showForm){
+        panel.appendChild(h('button',{className:'ab',onClick:()=>setState({showForm:true})},'+ Ajouter un événement'));
+      } else {
+        const form=h('div',{className:'af'},
+          h('div',{className:'fg'},
+            h('div',{className:'fl'},'Titre'),
+            h('input',{className:'fi',placeholder:'ex: Pizza, Yoga, Spectacle...',value:s.formData.title,onInput:e=>{s.formData.title=e.target.value;}}),
+          ),
+          h('div',{className:'fg'},
+            h('div',{className:'fl'},'Catégorie'),
+            h('div',{className:'cs'},
+              ...Object.entries(CATEGORIES).map(([k,cat])=>
+                h('button',{className:'cc'+(s.formData.category===k?' a':''),style:{color:cat.color},onClick:()=>{s.formData.category=k;render();}},cat.icon+' '+cat.label)
+              )
+            ),
+          ),
+          h('div',{className:'fg'},
+            h('div',{className:'fl'},'Notes'),
+            h('input',{className:'fi',placeholder:'Détails optionnels...',value:s.formData.notes,onInput:e=>{s.formData.notes=e.target.value;}}),
+          ),
+        );
+        if(s.editIdx===null){
+          form.appendChild(h('div',{className:'fg'},
+            h('div',{className:'fl'},'Récurrence'),
+            h('div',{style:{display:'flex',gap:'4px',flexWrap:'wrap'}},
+              ...[['none','Une fois'],['weekly','Chaque semaine'],['biweekly','Aux 2 sem.'],['monthly','Mensuel']].map(([v,l])=>
+                h('button',{className:'rc'+(s.formData.recurring===v?' a':''),onClick:()=>{s.formData.recurring=v;render();}},l)
+              )
+            ),
+          ));
+        }
+        form.appendChild(h('div',{className:'fa'},
+          h('button',{className:'bc',onClick:()=>setState({showForm:false,editIdx:null,formData:{title:'',category:'school',notes:'',recurring:'none'}})},'Annuler'),
+          h('button',{className:'bs',onClick:addEvent},s.editIdx!==null?'Modifier':'Enregistrer'),
+        ));
+        panel.appendChild(form);
+      }
+      app.appendChild(panel);
+    }
+  }
+
+  // ── LIST VIEW
+  if (s.view==='list') {
+    app.appendChild(h('div',{style:{padding:'2px 6px 6px',fontSize:'11px',color:'var(--gray-500)'}},MONTHS_FR[s.month]+' '+s.year));
+    let hasItems=false;
+    for(let day=1;day<=dim;day++){
+      const dateStr=ds(s.year,s.month,day);const info=getDayInfo(dateStr,s.events);
+      const d=new Date(s.year,s.month,day);if(d.getDay()===0||d.getDay()===6)continue;
+      const de=[];
+      if(info.isHoliday)de.push({title:info.holidayLabel,icon:'🏖️',type:'holiday'});
+      if(info.isPD)de.push({title:info.pdLabel,icon:'📘',type:'pd'});
+      info.customEvents.forEach(e=>{const cat=CATEGORIES[e.category]||CATEGORIES.school;de.push({title:e.title,notes:e.notes,icon:cat.icon,type:'custom'});});
+      if(!de.length)continue;
+      hasItems=true;
+      const item=h('div',{className:'li',style:info.isToday?{borderLeft:'3px solid var(--gold)'}:{},onClick:()=>setState({selected:dateStr,view:'calendar',showForm:false,editIdx:null})},
+        h('div',{className:'lbb',style:{background:de[0].type==='holiday'?'var(--green-bg)':de[0].type==='pd'?'var(--blue-bg)':'var(--gray-100)',color:de[0].type==='holiday'?'#166534':de[0].type==='pd'?'#1e40af':'var(--gray-800)'}},
+          h('span',{style:{fontSize:'15px',lineHeight:'1'}},String(day)),
+          h('span',{style:{fontSize:'7px',textTransform:'uppercase',opacity:'0.8'}},MONTHS_FR[s.month].slice(0,3)),
+        ),
+        h('div',{style:{flex:'1'}},...de.map(e=>h('div',{style:{fontSize:'12px',fontWeight:'500',display:'flex',alignItems:'center',gap:'4px',marginBottom:'1px'}},e.icon+' '+e.title+(e.notes?' — '+e.notes:'')))),
+        info.cycleDay?h('span',{style:{fontSize:'10px',color:'var(--gray-400)',fontWeight:'600'}},'J'+info.cycleDay):null,
+      );
+      app.appendChild(item);
+    }
+    if(!hasItems)app.appendChild(h('div',{style:{textAlign:'center',padding:'40px',color:'var(--gray-400)',fontSize:'12px'}},'Aucun événement ce mois'));
+  }
+
+  // ── SEARCH VIEW
+  if (s.view==='search') {
+    app.appendChild(h('div',{style:{padding:'6px 6px'}},
+      h('input',{className:'si',placeholder:'Chercher: événement, congé, jour 5...',value:s.search,onInput:e=>{s.search=e.target.value;doSearch(e.target.value);}}),
+    ));
+    if(s.searchResults&&!s.searchResults.length)app.appendChild(h('div',{style:{textAlign:'center',padding:'36px',color:'var(--gray-400)',fontSize:'12px'}},'Aucun résultat'));
+    if(s.searchResults)s.searchResults.forEach(r=>{
+      app.appendChild(h('div',{className:'sr',onClick:()=>{const d=pd(r.date);setState({year:d.getFullYear(),month:d.getMonth(),selected:r.date,view:'calendar',showForm:false});}},
+        h('div',{style:{fontSize:'12px',fontWeight:'600'}},(r.src==='holiday'?'🏖️':r.src==='pd'?'📘':r.src==='cycle'?'🔢':((CATEGORIES[r.category]||{}).icon||'📌'))+' '+r.title),
+        h('div',{style:{fontSize:'11px',color:'var(--gray-500)'}},fmtFr(r.date)),
+        r.notes?h('div',{style:{fontSize:'10px',color:'var(--gray-400)',marginTop:'1px'}},r.notes):null,
+      ));
+    });
+    if(!s.searchResults){
+      const sg=h('div',{style:{padding:'14px 6px',color:'var(--gray-500)',fontSize:'11px'}},h('p',{style:{marginBottom:'8px'}},'Suggestions :'));
+      ['Noël','pédagogique','pizza','yoga','congé','mars','jour 5'].forEach(t=>{
+        sg.appendChild(h('button',{className:'stag',onClick:()=>{s.search=t;doSearch(t);render();}},t));
+      });
+      app.appendChild(sg);
+    }
+  }
+
+  // Footer
+  app.appendChild(h('div',{className:'ftr'},'Données sauvegardées localement · Tout est modifiable'));
+}
+
+// Initial render
+render();
+</script>
+</body>
+</html>
